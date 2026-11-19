@@ -23,7 +23,7 @@ describe('preloadPlan', () => {
     expect(preloadPlan('skins', false, none).slice(0, 3)).toEqual(['play', 'playhub', 'rubies'])
   })
 
-  it('в порядке все 15 экранов ровно по разу', () => {
-    expect(new Set(PRELOAD_ORDER).size).toBe(15)
+  it('в порядке все 14 экранов ровно по разу', () => {
+    expect(new Set(PRELOAD_ORDER).size).toBe(14)
   })
 })

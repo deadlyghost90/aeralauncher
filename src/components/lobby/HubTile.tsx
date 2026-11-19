@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useShopGiftReady } from '../shop'
 import { dailyReady, useDaily } from '../../state/daily'
-import { api, hasMillidaAccount } from '../../lib/api'
-import { track } from '../../lib/telemetry'
+import { hasMillidaAccount } from '../../lib/api'
 import { useUi } from '../../state/ui'
 import { openPvp } from '../../state/pvp'
 import '../../styles/pixel/hubtile.css'
@@ -54,8 +53,7 @@ function go(kind: HubTileKind) {
     useUi.getState().setScreen('skins')
     return
   }
-  const screen = kind === 'shop' ? 'rubies' : 'hosting'
-  if (kind === 'server') track('hosting_open', {})
+  const screen = kind === 'shop' ? 'rubies' : kind === 'server' ? 'servers' : 'play'
   useUi.getState().setScreen(screen)
 }
 
@@ -81,18 +79,6 @@ export function HubTile({ kind, className, daily }: { kind: HubTileKind; classNa
     if (kind === 'shop' && hasMillidaAccount()) void useDaily.getState().load()
   }, [kind])
   const shopGift = shopGiftRaw || bonus
-  // «Создать сервер», а у кого сервер уже есть — «Мои серверы» (правка 21:24).
-  const [servers, setServers] = useState(0)
-  useEffect(() => {
-    if (kind !== 'server' || !hasMillidaAccount()) return
-    let alive = true
-    api<unknown>('/hosting/servers/me')
-      .then((l) => alive && setServers(Array.isArray(l) ? l.length : 0))
-      .catch(() => {})
-    return () => {
-      alive = false
-    }
-  }, [kind])
   const gift = shop && shopGift
   const skin = kind === 'wardrobe'
   const skinNew = skin && !skinSeen()
@@ -116,12 +102,9 @@ export function HubTile({ kind, className, daily }: { kind: HubTileKind; classNa
           ? t('Есть новое')
           : null
       : kind === 'server'
-        ? // Плитка называет хостинг: слова «сервер» в лобби не было нигде (QA 24.10.2026).
-          servers
-          ? t('Мои серверы')
-          : t('Свой сервер')
+        ? t('Серверы')
         : null
-  const ribbon = pvp ? t('Новое') : daily || skin || shop ? null : servers ? null : t('Бесплатно')
+  const ribbon = pvp ? t('Новое') : daily || skin || shop || kind === 'server' ? null : t('Бесплатно')
   return (
     <button
       type="button"

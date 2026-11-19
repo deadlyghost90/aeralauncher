@@ -13,7 +13,6 @@ import {
   ClassicHome,
   Friends,
   Top,
-  Hosting,
   Messages,
   Mods,
   PlayHub,
@@ -1028,7 +1027,6 @@ export function App() {
         <div className="app" id="scr-app" style={{ display: logged ? 'flex' : 'none' }}>
           {(() => {
             const onNav = (s: ScreenId) => {
-              if (s === 'hosting') track('hosting_open', {})
               if (s === 'servers') track('rating_open', {})
               if (s === 'mods') useMods.getState().scopeTo(null)
               setScreen(s)
@@ -1110,11 +1108,6 @@ export function App() {
               {screen === 'chat' && (
                 <Guard what="Сообщения">
                   <Messages on />
-                </Guard>
-              )}
-              {screen === 'hosting' && (
-                <Guard what="Хостинг">
-                  <Hosting on />
                 </Guard>
               )}
               {screen === 'playhub' && (

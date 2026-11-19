@@ -193,6 +193,13 @@ export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
          аккаунт, отзыв, настройки (под шестерёнкой — быстрый звук). */
       <>
       <header className="topbar is-lobby">
+        <div className="lb-context">
+          <span className="lb-context-mark" aria-hidden="true" />
+          <span className="lb-context-copy">
+            <b>AERA LAUNCHER</b>
+            <i>{t('Лобби')}</i>
+          </span>
+        </div>
         <div className="lb-btns">
           {/* Друзья — первыми, аккаунт за ними: друзей смотрят постоянно,
               аккаунт меняют редко (владелец 24.09.2026, 07:47). Лица тех, кто в сети, внахлёст (как пати в Fortnite):

@@ -21,7 +21,8 @@ const loaders = {
   friends: () => import('./Friends'),
   top: () => import('./Top'),
   chat: () => import('./Messages'),
-  hosting: () => import('./Hosting'),
+  // Legacy callers are redirected to Servers by state/ui.ts; never load the retired page.
+  hosting: () => import('./Servers'),
   playhub: () => import('./PlayHub'),
   pvp: () => import('./Pvp'),
   settings: () => import('../modals/Settings'),
@@ -51,7 +52,6 @@ export const Rubies = lazy(() => open('rubies').then((m) => ({ default: m.Rubies
 export const Friends = lazy(() => open('friends').then((m) => ({ default: m.Friends })))
 export const Top = lazy(() => open('top').then((m) => ({ default: m.Top })))
 export const Messages = lazy(() => open('chat').then((m) => ({ default: m.Messages })))
-export const Hosting = lazy(() => open('hosting').then((m) => ({ default: m.Hosting })))
 export const PlayHub = lazy(() => open('playhub').then((m) => ({ default: m.PlayHub })))
 export const Pvp = lazy(() => open('pvp').then((m) => ({ default: m.Pvp })))
 export const Settings = lazy(() => open('settings').then((m) => ({ default: m.Settings })))
@@ -73,7 +73,6 @@ export const PRELOAD_ORDER: readonly ScreenId[] = [
   'friends',
   'settings',
   'chat',
-  'hosting',
   'top',
   'servers',
   'mods',

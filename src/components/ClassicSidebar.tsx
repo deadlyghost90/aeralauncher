@@ -10,7 +10,7 @@ import { useGameNick } from '../state/gameNick'
 import { unreadTotal, useFriends } from '../state/friends'
 import { roomsUnreadTotal, useRooms } from '../state/rooms'
 import { showToast, useUi } from '../state/ui'
-import { hideNavHint, noteHostingOpen, restoreNavHint, useNavHint } from '../state/navHint'
+import { hideNavHint, restoreNavHint, useNavHint } from '../state/navHint'
 import { useNewHint } from '../state/newHint'
 import type { ScreenId } from '../state/ui'
 import type { HintStage } from '../state/navHint'
@@ -23,7 +23,6 @@ import { t, tx, useT } from '../i18n'
 /** hub: раздел «Во что играем» — false «Мои сборки» (сборки и рекомендации), true «Каталог». */
 const NAV: { id: ScreenId; icon: string; label: string; pill?: string; hub?: boolean }[] = [
   { id: 'play', icon: 'i-play', get label() { return t('Играть') } },
-  { id: 'hosting', icon: 'i-server-cog', get label() { return t('Мой сервер') } },
   { id: 'playhub', icon: 'i-box2', get label() { return t('Мои сборки') }, hub: false },
   { id: 'playhub', icon: 'i-blocks', get label() { return t('Каталог') }, hub: true },
   { id: 'servers', icon: 'i-server', get label() { return t('Серверы') } },
@@ -145,7 +144,6 @@ export function ClassicSidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
             onMouseEnter={() => preloadScreen(n.id)}
             onFocus={() => preloadScreen(n.id)}
             onClick={() => {
-              if (n.id === 'hosting') noteHostingOpen()
               if (n.hub === true && !useHubTab.getState().all) openCatalogHome()
               else if (n.hub !== undefined) useHubTab.getState().setAll(n.hub)
               onNav(n.id)

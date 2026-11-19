@@ -21,7 +21,6 @@ function screens(): PaletteItem[] {
     ['rubies', t('Магазин'), t('рубины покупки')],
     ['top', t('Топ'), t('рейтинг игроков')],
     ['friends', t('Друзья'), t('чат сообщения')],
-    ['hosting', t('Мой сервер'), t('хостинг')],
   ]
   const items: PaletteItem[] = list.map(([id, title, words]) => ({ id: 'screen:' + id, kind: 'screen', title, words, run: () => setScreen(id) }))
   items.push({ id: 'screen:mc-news', kind: 'screen', title: t('Новости Minecraft'), words: t('mojang обновления игры снапшоты'), run: openMcNews })

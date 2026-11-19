@@ -19,6 +19,7 @@ export type ScreenId =
   | 'friends'
   | 'top'
   | 'chat'
+  /** Legacy deep-link alias; the removed Hosting page now resolves to Servers. */
   | 'hosting'
   | 'playhub'
   | 'pvp'
@@ -135,7 +136,8 @@ export const useUi = create<UiState>((set, get) => ({
   // Код экрана уже в памяти: рисуем его переходом (старый экран остаётся, пока новый не готов, и
   // притушен — нажатие видно сразу). Кода ещё нет — переключаем сразу: вместо пустого ожидания
   // человек видит скелетон, пока чанк грузится.
-  setScreen: (s) => {
+  setScreen: (requested) => {
+    const s = requested === 'hosting' ? 'servers' : requested
     screenClicked(s, get().screen)
     if (!screenReady(s)) return set({ screen: s, navPending: false })
     set({ navPending: true })
