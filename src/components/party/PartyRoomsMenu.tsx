@@ -70,7 +70,7 @@ interface Place {
   mode: LobbyMode
 }
 const CATS: { id: Place['cat']; label: string; icon: string }[] = [
-  { id: 'ours', get label() { return t('Режимы Millida') }, icon: 'i-zap' },
+  { id: 'ours', get label() { return t('Режимы') }, icon: 'i-zap' },
   { id: 'servers', get label() { return t('Серверы') }, icon: 'i-server' },
   { id: 'builds', get label() { return t('Мои сборки') }, icon: 'i-blocks' },
   { id: 'versions', label: 'Minecraft', icon: 'i-play' },
@@ -375,7 +375,7 @@ export function PartyRoomsMenu({ start, close }: { start: 'join' | 'friends'; cl
                       }}
                     >
                       <Icon id="i-zap" />
-                      {busy === 'send' ? t('Отправляем сборку…') : busy === 'host' ? t('Создаём сервер…') : t('Сервер Millida бесплатно')}
+                      {busy === 'send' ? t('Отправляем сборку…') : busy === 'host' ? t('Создаём сервер…') : t('Создать сервер')}
                     </button>
                   ) : (
                     <button

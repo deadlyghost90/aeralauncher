@@ -1,0 +1,199 @@
+/* AERA community / commerce screen chrome, loaded lazily from main.tsx. */
+:root {
+  --aera-community-red: #e54252;
+  --aera-community-white: #f5f4f2;
+  --aera-community-charcoal: #191a1f;
+  --aera-community-line: rgba(245, 247, 250, .09);
+  --aera-community-soft: rgba(255, 255, 255, .045);
+  --aera-community-radius: 14px;
+}
+
+/* Shared surface vocabulary, restricted to the requested screen roots. */
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) {
+  color: var(--aera-community-white);
+  --community-surface: rgba(26, 27, 32, .88);
+  --community-surface-2: rgba(255, 255, 255, .045);
+  --community-rule: var(--aera-community-line);
+}
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.card, .fr-row, .tb-row, .tb-mine, .pv-me-card, .pv-m, .pv-top, .pv-matches, .pm-state, .lp-block, .lp-cardx, .lp-buy-card, .sh-block, .sh-card, .sv-stand, .sv-try, .pk, .pb, .bs-sheet, .bs-card) {
+  clip-path: none !important;
+  background-image: none;
+  border: 1px solid var(--community-rule);
+  border-radius: var(--aera-community-radius);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .15);
+}
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.fr-row, .tb-row, .tb-mine, .pv-me-card, .pv-m, .pm-state, .lp-block, .lp-cardx, .lp-buy-card, .sh-block, .sh-card, .sv-stand, .pk, .pb) {
+  background-color: var(--community-surface);
+}
+
+/* Friends and leaderboard: remove stepped row frames; preserve avatar and podium art. */
+:root:root .app #s-friends :is(.fr-row, .fr-cap, .fr-tabbar, .fr-list),
+:root:root .app #s-top :is(.tb-row, .tb-mine, .tb-podium, .tb-block, .tb-list) {
+  clip-path: none !important;
+}
+:root:root .app #s-friends .fr-row,
+:root:root .app #s-top .tb-row {
+  padding-block: 12px;
+  border-color: var(--community-rule);
+  background-color: rgba(255, 255, 255, .025);
+}
+:root:root .app #s-friends .fr-row:hover,
+:root:root .app #s-top .tb-row:hover {
+  background-color: rgba(255, 255, 255, .06);
+}
+:root:root .app #s-top .tb-row.me,
+:root:root .app #s-top .tb-row.pinned,
+:root:root .app #s-top .tb-mine {
+  border-color: rgba(229, 66, 82, .32);
+  background-color: rgba(229, 66, 82, .075);
+}
+:root:root .app #s-top .tb-rank,
+:root:root .app #s-friends .fr-tab-n {
+  border-radius: 999px;
+  clip-path: none !important;
+}
+
+/* Messages/chat, including the standalone overlay chat panel. */
+:root:root .app #s-chat :is(.msgs-side, .msgs-thread, .msgs-list, .chat-thread, .chat-head, .chat-body, .chat-input) {
+  background-image: none;
+  border-color: var(--community-rule);
+}
+:root:root .app #s-chat :is(.msgs-side, .chat-thread) {
+  background-color: rgba(24, 25, 30, .72);
+}
+:root:root .app #s-chat :is(.msg, .msg-invite, .msg-call, .chat-srv-pop, .chat-sticker-pop, .chat-emoji-pop) {
+  clip-path: none !important;
+  border-radius: 12px;
+}
+:root:root .app #s-chat .msg.me { background-color: rgba(229, 66, 82, .13); }
+:root:root.overlay-root .ov-card,
+:root:root.overlay-root .ov-panel,
+:root:root.overlay-root .ovc :is(.ovc-rail, .ovc-thread, .ovc-head, .ovc-compose),
+:root:root.overlay-root .ovc :is(.ovc-row, .msg, .msg-invite, .msg-call) {
+  clip-path: none !important;
+  border-color: var(--aera-community-line);
+  border-radius: 11px;
+}
+:root:root.overlay-root .ov-card {
+  color: var(--aera-community-white);
+  background-color: rgba(25, 26, 31, .94);
+  background-image: none;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .36);
+}
+:root:root.overlay-root .ov-card-tag,
+:root:root.overlay-root .ov-card-x {
+  clip-path: none !important;
+  border-radius: 7px;
+}
+:root:root.overlay-root .ovc :is(.ovc-rail, .ovc-thread, .ovc-head, .ovc-compose) {
+  background-image: none;
+  border-color: var(--aera-community-line);
+}
+:root:root.overlay-root .ovc :is(.ovc-row, .msg, .msg-invite, .msg-call) { border-radius: 11px; }
+:root:root.overlay-root .ovc .msg.me { background-color: rgba(211, 39, 66, .16); }
+
+/* PvP and tiers. Keep kit/background/character imagery untouched. */
+:root:root .app :is(.pv, .pv-page) :is(.pv-me-card, .pv-m, .pv-top, .pv-matches, .pv-found, .pv-go, .pv-page-title, .tb-list, .tb-row) {
+  clip-path: none !important;
+  border-color: var(--community-rule);
+}
+:root:root .app :is(.pv, .pv-page) :is(.pv-me-card, .pv-m, .pv-top, .pv-matches, .tb-row) {
+  background-color: rgba(25, 26, 31, .82);
+}
+:root:root .app .pv :is(.pv-kcard, .pv-card-face, .pv-card-banner, .pv-car-back) {
+  /* Artwork layers are retained; only remove frame masks and hard pixel edges. */
+  clip-path: none !important;
+}
+
+/* Rubies/shop and Plus/premium: neutralize pixel slab chrome without flattening product art. */
+:root:root .app #s-rubies :is(.sh-block, .sh-card, .pk, .pb, .sv-stand, .sv-banner, .sv-try, .sh-guest),
+:root:root .app #s-plus :is(.lp-hero, .lp-block, .lp-cardx, .lp-buy-card, .lp-shop-item, .lp-aib, .lp-aiex-card),
+:root:root .app #s-premium :is(.pm-state, .pm-card, .pm-hero, .ppx-ci, .ppx-ch, .ppx-sm-card) {
+  clip-path: none !important;
+  border-color: var(--community-rule);
+  border-radius: var(--aera-community-radius);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+}
+:root:root .app #s-rubies :is(.sh-block, .sh-card, .pk, .pb, .sv-stand),
+:root:root .app #s-plus :is(.lp-block, .lp-cardx, .lp-buy-card, .lp-shop-item, .lp-aib, .lp-aiex-card),
+:root:root .app #s-premium :is(.pm-state, .pm-card, .ppx-ci, .ppx-ch, .ppx-sm-card) {
+  background-color: rgba(25, 26, 31, .86);
+  background-image: none;
+}
+:root:root .app #s-rubies :is(.sv-card-look, .sh-art, .pk-art, .sv-banner-art),
+:root:root .app #s-plus :is(.lp-rig, .lp-stage, .lp-mc, .lp-cardx-art),
+:root:root .app #s-premium :is(.pm-art, .ppx-ci-hero, .ppx-sm-art) {
+  /* Preserve original Minecraft/product imagery and its useful framing. */
+  clip-path: none !important;
+}
+
+/* Shared dialogs only when explicitly tied to one of these screen families.
+   Shop purchase sheets and top leaderboard profile dialog are included. */
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) ~ .modal-bg,
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) .modal-bg,
+:root:root .app .bs-bg,
+:root:root .app .sv-try-bg {
+  background-color: rgba(8, 9, 12, .72);
+  background-image: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+:root:root .app :is(.modal, .tb-card, .bs-sheet, .sv-try, .room-modal) {
+  clip-path: none !important;
+  background-image: none;
+  border: 1px solid var(--aera-community-line);
+  border-radius: 18px;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, .42);
+}
+:root:root .app :is(.tb-card, .bs-sheet, .sv-try, .room-modal) { background-color: #202126; }
+
+/* Readability and interaction without adding or moving controls. */
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.seg, .sv-chip, .set-tab, .tb-act, .tb-card-x, .sv-try-x) {
+  clip-path: none !important;
+  border-radius: 10px;
+}
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.seg.on, .sv-chip.on, .set-tab.on, .tb-act.on) {
+  color: var(--aera-community-white);
+  border-color: rgba(229, 66, 82, .42);
+  background-color: rgba(229, 66, 82, .14);
+}
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(button, a, [role="button"]):focus-visible {
+  outline: 2px solid rgba(229, 66, 82, .8);
+  outline-offset: 2px;
+}
+
+/* Narrow layouts retain readable content and let existing flex/grid structures wrap. */
+@media (max-width: 700px) {
+  :root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) {
+    min-width: 0;
+  }
+  :root:root .app #s-chat :is(.msgs-side, .msgs-thread) { min-width: 0; }
+  :root:root .app :is(#s-friends, #s-top) :is(.page-head, .fr-tabbar, .tb-head-line) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  :root:root .app :is(#s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.sh-head, .pv-sec-head, .lp-head) {
+    flex-wrap: wrap;
+  }
+  :root:root .app :is(.modal, .tb-card, .bs-sheet, .sv-try, .room-modal) {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
+  }
+}
+
+/* Logical spacing and natural text direction keep localized/CJK/RTL copy intact. */
+:root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) :is(.fr-nick, .tb-nick, .chat-head-body, .msg, .sh-head, .lp-head, .pv-cap) {
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:root .app :is(#s-friends, #s-chat, #s-top, #s-rubies, #s-plus, #s-premium, .pv, .pv-page) *,
+  :root:root .app .ovc * {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

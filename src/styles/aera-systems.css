@@ -1,0 +1,192 @@
+/* AERA screen systems — lazily loaded screen-local chrome overrides only.
+   Pixel-art assets and Minecraft skins remain untouched. */
+
+:root:root #s-settings {
+  --aera-surface: rgba(25, 26, 31, .82);
+  --aera-line: rgba(245, 247, 250, .09);
+  --aera-line-strong: rgba(245, 247, 250, .15);
+}
+:root:root #s-settings .s2-plate,
+:root:root #s-settings .s2-hero {
+  clip-path: none !important;
+  border: 1px solid var(--aera-line);
+  border-radius: 14px;
+  background: var(--aera-surface);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .13) !important;
+  --px-ol: transparent;
+  --px-ft: transparent;
+  --px-fb: transparent;
+  --px-fl: transparent;
+  --px-fr: transparent;
+}
+:root:root #s-settings .s2-plate { padding: 14px 16px; }
+:root:root #s-settings .s2-tabs {
+  background: rgba(22, 23, 28, .82);
+  border: 1px solid var(--aera-line);
+  border-radius: 13px;
+  box-shadow: none;
+}
+:root:root #s-settings .s2-tabs .set-tab {
+  clip-path: none !important;
+  border-radius: 9px !important;
+}
+:root:root #s-settings .s2-sw,
+:root:root #s-settings .s2-dot,
+:root:root #s-settings .s2-kbd,
+:root:root #s-settings .s2-wp-tile,
+:root:root #s-settings .s2-diag {
+  clip-path: none !important;
+  border-radius: 8px;
+}
+:root:root #s-settings .s2-sw.on { box-shadow: 0 0 0 2px var(--aera-red, #e54252) !important; }
+:root:root #s-settings .s2-wp-tile { overflow: hidden; }
+:root:root #s-settings .s2-wp-tile img,
+:root:root #s-settings .s2-wp-pixels { border-radius: inherit; }
+:root:root #s-settings .s2-diag {
+  border: 1px solid var(--aera-line);
+  background: rgba(15, 16, 20, .74);
+}
+
+/* Public server directory: neutral cards and filter chrome; retain server logos/art. */
+:root:root #s-servers .srv-row {
+  clip-path: none !important;
+  border: 1px solid var(--aera-line);
+  border-radius: 14px;
+  background: rgba(25, 26, 31, .78);
+  box-shadow: 0 7px 22px rgba(0, 0, 0, .13) !important;
+  --px-ol: transparent;
+  --px-ft: transparent;
+  --px-fb: transparent;
+  --px-fl: transparent;
+  --px-fr: transparent;
+}
+:root:root #s-servers .mods-filters .mk-pill,
+:root:root #s-servers .mods-filters .mk-pill.is-active,
+:root:root #s-servers .cat-empty-ic,
+:root:root #s-servers .cat-skel-icon,
+:root:root #s-servers .cat-skel-btn {
+  clip-path: none !important;
+  border-radius: 9px;
+  box-shadow: none !important;
+  --px-ol: transparent;
+  --px-ft: transparent;
+  --px-fb: transparent;
+  --px-fl: transparent;
+  --px-fr: transparent;
+}
+:root:root #s-servers .mods-filters .mk-pill.is-active {
+  border-color: rgba(229, 66, 82, .34);
+  background: rgba(229, 66, 82, .12);
+  color: var(--aera-red, #e54252);
+}
+
+/* Wardrobe: strip only the stepped frames from UI panels and item controls.
+   Skin/cosmetic textures, stage canvas, and all catalog imagery are preserved. */
+:root:root #s-skins .ch-stage,
+:root:root #s-skins .ch-fit,
+:root:root #s-skins .ch-looks,
+:root:root #s-skins .ch-tile,
+:root:root #s-skins .ch-slot,
+:root:root #s-skins .ch-set-art,
+:root:root #s-skins .ch-look-item,
+:root:root #s-skins .ch-look-art,
+:root:root #s-skins .ch-worn-item,
+:root:root #s-skins .ch-look-input,
+:root:root #s-skins .ch-warn {
+  clip-path: none !important;
+  border-radius: 12px;
+  --px-ol: transparent;
+  --px-ft: transparent;
+  --px-fb: transparent;
+  --px-fl: transparent;
+  --px-fr: transparent;
+}
+:root:root #s-skins .ch-stage,
+:root:root #s-skins .ch-fit,
+:root:root #s-skins .ch-looks,
+:root:root #s-skins .ch-tile {
+  border: 1px solid var(--aera-line);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .13) !important;
+}
+:root:root #s-skins .ch-tile.on { border-color: rgba(229, 66, 82, .58); }
+:root:root #s-skins .ch-tile-tools button,
+:root:root #s-skins .ch-action-plus,
+:root:root #s-skins .ch-tile-lock,
+:root:root #s-skins .ch-tile-mark,
+:root:root #s-skins .ch-tile-del,
+:root:root #s-skins .ch-slot-alert,
+:root:root #s-skins .ch-worn-off {
+  clip-path: none !important;
+  border-radius: 7px;
+}
+/* Keep the intentionally pixel-rendered character stage backdrop and imagery. */
+:root:root #s-skins .ch-stage-bg { border-radius: 12px; }
+
+/* Build editor/configuration modal and its settings panel; does not touch runtime logic. */
+:root:root #bsModal .instance-shell {
+  clip-path: none !important;
+  border-radius: 16px;
+}
+:root:root #bsModal .inst-icon,
+:root:root #bsModal .inst-back,
+:root:root #bsModal .inst-tab,
+:root:root #bsModal .bpg-row,
+:root:root #bsModal .bpg-art,
+:root:root #bsModal .bpg-empty,
+:root:root #bsModal .bpg-empty-ic,
+:root:root #bsModal .bpg-srv,
+:root:root #bsModal .bpg-srv-form {
+  clip-path: none !important;
+  border-radius: 10px;
+  --px-ol: transparent;
+  --px-ft: transparent;
+  --px-fb: transparent;
+  --px-fl: transparent;
+  --px-fr: transparent;
+}
+:root:root #bsModal .inst-tab.on {
+  background: rgba(229, 66, 82, .10);
+  box-shadow: inset 0 -2px 0 var(--aera-red, #e54252) !important;
+}
+:root:root #bsModal .bpg-row,
+:root:root #bsModal .bpg-empty,
+:root:root #bsModal .bpg-srv,
+:root:root #bsModal .bpg-srv-form,
+:root:root #bsModal #bsTabOpts .mcf-modder {
+  border: 1px solid var(--aera-line);
+  background-color: rgba(25, 26, 31, .76);
+  box-shadow: none !important;
+}
+:root:root #bsModal #bsTabOpts :is(.mcf-pc-chip, .mcf-preset, .mcf-fps, .mcf-fine-btn, .mcf-seg, .mcf-seg button, .mcf-step, .mcf-step button, .mcf-warn, .mset-chip) {
+  clip-path: none !important;
+  border-radius: 8px;
+  box-shadow: none;
+}
+:root:root #bsModal #bsTabOpts .mcf-row.dirty { border-inline-start: 2px solid #d9a441; }
+
+@media (max-width: 720px) {
+  :root:root #s-settings .s2-plate { padding: 12px; }
+  :root:root #s-servers .srv-row { border-radius: 11px; }
+  :root:root #s-skins .ch-stage,
+  :root:root #s-skins .ch-fit,
+  :root:root #s-skins .ch-looks,
+  :root:root #s-skins .ch-tile { border-radius: 10px; }
+  :root:root #bsModal .inst-content { padding-inline: 14px; }
+  :root:root #bsModal #bsTabOpts .mcf-row { grid-template-columns: minmax(0, 1fr) auto; }
+}
+@media (max-width: 460px) {
+  :root:root #s-settings .s2-plate { padding: 10px; }
+  :root:root #bsModal #bsTabOpts .mcf-row { gap: 6px; }
+  :root:root #bsModal #bsTabOpts .mcf-val { grid-column: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:root #s-settings *,
+  :root:root #s-servers *,
+  :root:root #s-skins *,
+  :root:root #bsModal #bsTabOpts * {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

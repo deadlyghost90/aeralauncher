@@ -137,6 +137,87 @@ export function HubTopTabs({ libLabel }: { libLabel?: string }) {
   )
 }
 
+function AeraRail({
+  screen,
+  onNav,
+  friendsOnline,
+  friendAlerts,
+}: {
+  screen: ScreenId
+  onNav: (s: ScreenId) => void
+  friendsOnline: number
+  friendAlerts: number
+}) {
+  const t = useT()
+  const hubAll = useHubTab((s) => s.all)
+  const items: { id: ScreenId; icon: string; label: string; hub?: boolean }[] = [
+    { id: 'play', icon: 'i-play', label: t('Играть') },
+    { id: 'playhub', icon: 'i-box2', label: t('Мои сборки'), hub: false },
+    { id: 'playhub', icon: 'i-blocks', label: t('Каталог'), hub: true },
+    { id: 'servers', icon: 'i-server', label: t('Серверы') },
+    { id: 'skins', icon: 'i-shirt', label: t('Скины') },
+    { id: 'rubies', icon: 'i-gem', label: t('Магазин') },
+    { id: 'top', icon: 'i-trophy', label: t('Топ') },
+    { id: 'friends', icon: 'i-users', label: t('Друзья') },
+  ]
+  const active = (item: (typeof items)[number]) =>
+    item.hub === undefined
+      ? screen === item.id
+      : (screen === 'playhub' && hubAll === item.hub) || screen === (item.hub ? 'mods' : 'builds')
+
+  return (
+    <nav className="aera-rail" aria-label="Aera navigation">
+      <div className="aera-rail-brand">
+        <img src="/aera-mark.svg" alt="" width={32} height={32} draggable={false} />
+        <span className="aera-rail-wordmark"><b>AERA</b><i>LAUNCHER</i></span>
+      </div>
+      <div className="aera-rail-list">
+        {items.map((item) => {
+          const selected = active(item)
+          return (
+            <button
+              key={item.id + ':' + (item.hub === undefined ? 'screen' : String(item.hub))}
+              type="button"
+              className={'aera-nav-item' + (selected ? ' active' : '')}
+              data-screen={item.id}
+              data-tip={item.label}
+              aria-current={selected ? 'page' : undefined}
+              onMouseEnter={() => preloadScreen(item.id)}
+              onFocus={() => preloadScreen(item.id)}
+              onClick={() => {
+                if (item.hub === true && !useHubTab.getState().all) openCatalogHome()
+                else if (item.hub !== undefined) useHubTab.getState().setAll(item.hub)
+                onNav(item.id)
+              }}
+            >
+              <Icon id={item.icon} />
+              <span>{item.label}</span>
+              {item.id === 'friends' && friendsOnline > 0 ? <i className="aera-nav-count">{friendsOnline}</i> : null}
+              {item.id === 'friends' && friendAlerts > 0 ? <i className="aera-nav-alert">{friendAlerts > 99 ? '99+' : friendAlerts}</i> : null}
+            </button>
+          )
+        })}
+      </div>
+      <div className="aera-rail-bottom">
+        <button
+          type="button"
+          className={'aera-nav-item' + (screen === 'settings' ? ' active' : '')}
+          data-screen="settings"
+          data-tip={t('Настройки')}
+          aria-current={screen === 'settings' ? 'page' : undefined}
+          onMouseEnter={() => preloadScreen('settings')}
+          onFocus={() => preloadScreen('settings')}
+          onClick={() => onNav('settings')}
+        >
+          <Icon id="i-settings" />
+          <span>{t('Настройки')}</span>
+        </button>
+        <div className="aera-rail-version">AERA · DESKTOP</div>
+      </div>
+    </nav>
+  )
+}
+
 export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
   const t = useT()
   const screen = useUi((s) => s.screen)
@@ -178,6 +259,7 @@ export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
   // Непрочитанное в группах считается тем же счётчиком: для человека это одно
   // и то же «мне написали», а не два разных места.
   const frAlerts = millida ? unreadTotal(friends) + roomsUnreadTotal(rooms) + reqIn.length : 0
+  const friendsOnline = millida ? friends.filter((f) => f.online).length : 0
 
   const lobby = screen === 'play'
 
@@ -192,6 +274,7 @@ export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
          заявки и непрочитанное одним счётчиком — чат открывается оттуда же),
          аккаунт, отзыв, настройки (под шестерёнкой — быстрый звук). */
       <>
+      <AeraRail screen={screen} onNav={onNav} friendsOnline={friendsOnline} friendAlerts={frAlerts} />
       <header className="topbar is-lobby">
         <div className="lb-context">
           <span className="lb-context-mark" aria-hidden="true" />
@@ -297,6 +380,8 @@ export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
     /* Внутренние экраны: только шапка — возврат в лобби, ход запуска, рубины.
        Название раздела не пишем: у каждого экрана свой заголовок. Вкладок
        разделов нет: в другой раздел — через лобби, как в Brawl Stars. */
+    <>
+    <AeraRail screen={screen} onNav={onNav} friendsOnline={friendsOnline} friendAlerts={frAlerts} />
     <header className="topbar">
       {/* Счётчик — красным значком на углу кнопки, как «!» у плиток лобби
           (владелец 25.09.2026): внутри кнопки его срезал угол. */}
@@ -346,6 +431,7 @@ export function Sidebar({ onNav }: { onNav: (s: ScreenId) => void }) {
         <span className="tb-slot" id="tbSlot" />
       </div>
     </header>
+    </>
   )
 }
 

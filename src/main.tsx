@@ -33,8 +33,15 @@ import { initAccent } from './lib/accent'
 import { initPremiumTheme } from './lib/premiumTheme'
 import './styles/pixel/premium-theme.css'
 import './styles/classic.css'
-// Keep the larger Aera-only visual treatment out of the launch-critical CSS budget.
-void import('./styles/aera-brand.css')
+// Keep the Aera-only design system out of the launch-critical CSS budget; load
+// screen-family refinements after the shared shell so their scoped overrides win.
+void import('./styles/aera-brand.css').then(() =>
+  Promise.all([
+    import('./styles/aera-play-build.css'),
+    import('./styles/aera-systems.css'),
+    import('./styles/aera-community.css'),
+  ]),
+)
 // Последним: лёгкий режим и «меньше движения» бьют остальные правила (lib/liteMode.ts).
 import './styles/13-lite.css'
 import { openExt } from './lib/api'

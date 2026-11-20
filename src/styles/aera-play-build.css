@@ -1,0 +1,123 @@
+/* AERA LAUNCHER — Play / Builds / PlayHub
+   Loaded lazily from main.tsx. Scoped to the existing Play and PlayHub screens;
+   Minecraft screenshots, pack art and game artwork remain untouched. */
+
+/* Play: retain the live Minecraft hero image/canvas, simplify its container. */
+#s-play.screen.lobby {
+  --aera-red: #b51f32;
+  --aera-charcoal: #202124;
+  --aera-muted: #85878b;
+}
+#s-play .hero-live {
+  border-radius: 12px;
+  clip-path: none;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .16);
+}
+#s-play .hero-body h2 { letter-spacing: -.035em; }
+#s-play .hero-meta .pill { border-radius: 999px; }
+#s-play .hero-cta .btn.glass,
+#s-play .hero-cta .btn.running,
+#s-play .hero-cta .btn.danger,
+#s-play .hero-cta .btn.glass.on {
+  border-radius: 10px;
+  clip-path: none;
+  backdrop-filter: none;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .2);
+}
+#s-play .hero-cta .btn.running { color: #fff; }
+#s-play .hero-cta .btn.running .run-dot { background: #fff; box-shadow: none; }
+#s-play .hero-gear { border-radius: 10px; clip-path: none; }
+
+/* Existing build cards and their genuine launch affordance, inside Play only. */
+#s-play .build-card {
+  border-radius: 12px;
+  clip-path: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .035), 0 6px 18px rgba(0, 0, 0, .16);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+#s-play .build-card:hover { transform: translateY(-2px); }
+#s-play .build-card.selected { box-shadow: inset 0 0 0 1px rgba(181, 31, 50, .44), 0 6px 18px rgba(0, 0, 0, .16); }
+#s-play .build-run,
+#s-play .pl-hero-cover,
+#s-play .pl-prem,
+#s-play .pl-prem-badge,
+#s-play .pl-srv-tag { border-radius: 8px; clip-path: none; }
+#s-play .pl-prem { box-shadow: 0 5px 18px rgba(0, 0, 0, .14); }
+
+/* Builds/configuration views shown within the PlayHub build-library pane. */
+#s-playhub .hub-pane .ph-card,
+#s-playhub .hub-pane .hh-cont,
+#s-playhub .hub-pane .hh-cont2,
+#s-playhub .hub-pane .hs-tile,
+#s-playhub .hub-pane .ph-mt,
+#s-playhub .hub-pane .fy-more {
+  border-radius: 12px;
+  clip-path: none;
+}
+#s-playhub .hub-pane .ph-card:focus-visible,
+#s-playhub .hub-pane .hs-tile:focus-visible {
+  outline: 2px solid #c52a3d;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+#s-playhub .hub-pane .ph-card-tag,
+#s-playhub .hub-pane .ph-card-on,
+#s-playhub .hub-pane .ph-card-ru,
+#s-playhub .hub-pane .ph-ver,
+#s-playhub .hub-pane .hs-new,
+#s-playhub .hub-pane .hh-tag,
+#s-playhub .hub-pane .hh-online,
+#s-playhub .hub-pane .hs-tag,
+#s-playhub .hub-pane .ph-mine-more {
+  border-radius: 6px;
+  clip-path: none;
+}
+#s-playhub .hub-pane .ph-card-tag { background: #b51f32; color: #fff; }
+#s-playhub .hub-pane .ph-card-dot { background: #b51f32; }
+#s-playhub .hub-pane .ph-card.on { background-color: rgba(181, 31, 50, .13); }
+#s-playhub .hub-pane .ph-card.on .ph-card-body b { color: #dc5363; }
+#s-playhub .hub-pane .hh-title { text-shadow: 0 2px 10px rgba(0, 0, 0, .34); }
+
+/* PlayHub entry screen: rounded image window, restrained image movement. */
+#s-playhub .playhub > .ph-hero,
+#s-playhub .ph-hero {
+  border-radius: 14px;
+  clip-path: none;
+}
+#s-playhub .ph-hero-body { border-radius: 10px; clip-path: none; }
+#s-playhub .playhub .ph-card { border-radius: 10px; clip-path: none; }
+#s-playhub .ph-card-tag,
+#s-playhub .ph-card-on { border-radius: 6px; clip-path: none; }
+
+/* Existing launch preparation/progress card can appear while Play is active. */
+#s-play .prelaunch {
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .3);
+}
+#s-play .prelaunch .pl-bar,
+#s-play .prelaunch .pl-bar i { border-radius: 999px; }
+#s-play .prelaunch .pl-bar i { background: #b51f32; }
+
+@media (max-width: 760px) {
+  #s-play .hero-live { border-radius: 10px; }
+  #s-play .pl-prem-row { grid-auto-columns: minmax(0, min(260px, 78vw)); }
+  #s-playhub .hub-pane .hub-grid { grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); }
+  #s-playhub .hh-copy { left: 16px; bottom: 96px; max-width: calc(100% - 32px); }
+  #s-playhub .hh-title { font-size: clamp(28px, 8vw, 44px); }
+  #s-playhub .hh-thumbs { left: 12px; right: 12px; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #s-play .build-card,
+  #s-play .build-cover .mini-play,
+  #s-playhub .ph-card-art > img,
+  #s-playhub .ph-hero > img,
+  #s-playhub .hs-art img,
+  #s-playhub .hh-slide,
+  #s-playhub .hh-slide.on .hh-art {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

@@ -67,7 +67,7 @@ export function MillidaModCard({ profile }: { profile: string }) {
         <Icon id="i-brush" />
       </span>
       <div className="icon-nudge-text">
-        <b>{t('Косметика Millida')}</b>
+        <b>{t('Косметика')}</b>
         <span className="faint-note">{note}</span>
       </div>
       <div className="icon-nudge-acts">
